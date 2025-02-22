@@ -1,0 +1,23 @@
+networks:
+  nginx_network:
+    external: true
+
+services:
+  nginx:
+    image: nginx:latest
+    container_name: nginx_server
+    restart: always
+    networks:
+      nginx_network:
+        ipv4_address: 172.20.8.2
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./logs:/var/log/nginx  # Persistent logs
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro  # Custom Nginx configuration (Optional)
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "5"
