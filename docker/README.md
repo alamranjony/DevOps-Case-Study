@@ -1,7 +1,7 @@
 # Nginx Docker Setup with Persistent Logs and Custom Network
 
 ## Overview
-This task sets up an **Nginx server** using **Docker Compose**, ensuring that logs persist between container restarts and that the container runs on a custom **bridge network (172.20.8.0/24)**.
+Configure **Nginx server** using **Docker Compose**, ensuring that logs persist between container restarts and that the container runs on a custom **bridge network (172.20.8.0/24)**.
 
 ## Prerequisites
 Before running this setup, ensure you have:
