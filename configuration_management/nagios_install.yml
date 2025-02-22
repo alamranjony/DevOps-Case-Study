@@ -1,0 +1,67 @@
+---
+- name: Install Nagios Server
+  hosts: nagios_server
+  become: yes
+  tasks:
+    - name: Install required packages
+      apt:
+        name:
+          - apache2
+          - php
+          - libapache2-mod-php
+          - php-gd
+          - php-cli
+          - libgd-dev
+          - unzip
+          - build-essential
+          - wget
+          - libssl-dev
+          - bc
+          - gawk
+          - dc
+          - build-essential
+          - gcc
+          - libc6
+          - make
+          - wget
+          - unzip
+          - apache2-utils
+          - snmp
+          - libnet-snmp-perl
+        state: present
+        update_cache: yes
+
+    - name: Download Nagios
+      get_url:
+        url: "https://assets.nagios.com/downloads/nagioscore/releases/nagios-4.4.6.tar.gz"
+        dest: "/tmp/nagios.tar.gz"
+
+    - name: Extract Nagios
+      unarchive:
+        src: "/tmp/nagios.tar.gz"
+        dest: "/tmp/"
+        remote_src: yes
+
+    - name: Compile and Install Nagios
+      shell: |
+        cd /tmp/nagios-4.4.6
+        ./configure --with-httpd-conf=/etc/apache2/sites-enabled
+        make all
+        make install
+        make install-commandmode
+        make install-init
+        make install-config
+        make install-webconf
+      args:
+        creates: /usr/local/nagios/bin/nagios
+
+    - name: Enable and restart Apache
+      systemd:
+        name: apache2
+        enabled: yes
+        state: restarted
+
+    - name: Ensure Nagios starts at boot
+      systemd:
+        name: nagios
+        enabled: yes
