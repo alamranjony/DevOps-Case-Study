@@ -124,7 +124,7 @@ How to identify the reason for a pod restart and analyzing potential causes of u
 ## 1. Identifying the Reason for a Pod Restart  
 In Kubernetes, a pod may restart due to various reasons, including:  
 
-- **Out of Memory (OOM)**: The pod exceeds its allocated memory limit and gets terminated by Kubernetes.  
+- **Out of Memory (OOM)**: The pod exceeds its allocated memory limit and gets terminated by Kubernetes. 
 - **Liveness Probe Failures**: If the liveness probe fails multiple times, Kubernetes restarts the pod.  
 - **Application Crashes**: If the application inside the container crashes due to an unhandled exception or fatal error, the pod restarts.  
 - **Node Resource Constraints**: If the node runs out of CPU, memory, or disk, Kubernetes may evict or restart the pod.  
@@ -138,9 +138,9 @@ Run the following command to inspect the pod details, including restart reasons:
 ```sh
 kubectl describe pod java-app-7d9d44ccbf-lmvbc -n production
 
+
 ### **Step 2: Use `kubectl logs` to Check Restart Events**
 If the pod has restarted, its logs may have been cleared. To view logs from the previous container instance:
 
 ```sh
 kubectl logs java-app-7d9d44ccbf-lmvbc -n production --previous
-
