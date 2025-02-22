@@ -137,10 +137,11 @@ Run the following command to inspect the pod details, including restart reasons:
 
 ```sh
 kubectl describe pod java-app-7d9d44ccbf-lmvbc -n production
+```
 
-
-### **Step 2: Use `kubectl logs` to Check Restart Events**
+### **Step 2: Use `kubectl logs` to Check Restart Logs**
 If the pod has restarted, its logs may have been cleared. To view logs from the previous container instance:
 
 ```sh
 kubectl logs java-app-7d9d44ccbf-lmvbc -n production --previous
+```
