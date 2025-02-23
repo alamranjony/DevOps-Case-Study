@@ -34,6 +34,6 @@ Replace `mongo-node2:27017` with the correct hostname and port.
 
 #### **Step 4: Verify Sharding**
 ```sh
-sh.status()
+db.company_name.getShardDistribution()
 ```
 
