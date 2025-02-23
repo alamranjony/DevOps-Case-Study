@@ -1,1 +1,3 @@
-DevOps Case Study Solutions
+### DevOps Case Study Solutions
+
+## Check README of each folder.
